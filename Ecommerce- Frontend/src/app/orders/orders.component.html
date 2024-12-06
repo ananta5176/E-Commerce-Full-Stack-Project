@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <h4>Orders</h4>
+  <div class="row">
+    <div class="col-sm-10">
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Order Date</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of list; track p) {
+            <tr>
+              <td>{{ p.customer.name }}</td>
+              <td>{{ p.orderDate | date }}</td>
+              <td>
+                <h6>Address</h6>
+                <p>City : {{p.address.state}},{{p.address.state}}<br/>                
+                {{p.address.state}} ({{p.address.zip}})</p>
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Qty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (od of p.details; track od) {
+                      <tr>
+                        <td>
+                          <img
+                            src="http://localhost:8080/{{ od.product.photo }}"
+                            style="width: 60px;height:60px" class="img-thumbnail"
+                            />{{ od.product.pname }}
+                          </td>
+                          <td>{{ od.product.price }}</td>
+                          <td>{{ od.qty }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
